@@ -43,7 +43,7 @@ public class DeckManager : MonoBehaviour
 
     private void Update()
     {
-        if (hand.transform.childCount < maxCardsInHand-1)
+        if (hand != null && hand.transform.childCount < maxCardsInHand-1)
         {
             cardManager.DrawCard();
         }

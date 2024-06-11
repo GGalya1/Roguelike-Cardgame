@@ -7,7 +7,7 @@ public class ScoreInfo : MonoBehaviour
 {
 
     public static ScoreInfo Instance { get; private set; }
-    [SerializeField] private TMP_Text scoreInfo;
+    //[SerializeField] private TMP_Text scoreInfo;
     public int score;
     public int sadStudents;
     public int happyStudents;
@@ -24,11 +24,11 @@ public class ScoreInfo : MonoBehaviour
             Destroy(gameObject);
         }
 
-        scoreInfo.text = "Score: 0";
+        //scoreInfo.text = "Score: 0";
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         scoreInfo.text = "Score: " + score + "\n";
         if (sadStudents > 0)
@@ -39,5 +39,5 @@ public class ScoreInfo : MonoBehaviour
         {
             scoreInfo.text += "Students happy: " + happyStudents + "\n";
         }
-    }
+    }*/
 }
