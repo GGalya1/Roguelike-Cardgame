@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
-    public static DeckManager Instance { get; private set; }
+    //так как при смене сцены сбрасывются все переменные [SerializedField] - было принято волевое решение
+    //поменять логику этого класса и сделать для колоды другой синглтон
+    //public static DeckManager Instance { get; private set; }
 
     [SerializeField] private Transform hand;
     [SerializeField] public int maxCardsInHand = 5;
@@ -12,7 +14,7 @@ public class DeckManager : MonoBehaviour
 
     private List<Card> deck = new List<Card>();
 
-    private void Awake()
+    /*private void Awake()
     {
         if (Instance == null)
         {
@@ -23,7 +25,7 @@ public class DeckManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
     public void Start()
     {
@@ -43,7 +45,7 @@ public class DeckManager : MonoBehaviour
 
     private void Update()
     {
-        if (hand != null && hand.transform.childCount < maxCardsInHand-1)
+        if (hand != null && hand.transform.childCount < maxCardsInHand-1 && deck.Count > 0)
         {
             cardManager.DrawCard();
         }

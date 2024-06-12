@@ -6,21 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class EndOfDayScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private ManagmentMenu managmentMenu;
 
     public void StartNewDay()
     {
-        //DeckManager.Instance.deckBetweenRounds = DeckManager.Instance.getDeck();
+        //должны обновить информацию в синглтоне основываясь на выборе в меню
+        ScoreInfo.Instance.score = managmentMenu.summe;
+        //может ввести переменную sadStudentsToday?
+        ScoreInfo.Instance.sadStudents = 0;
+
         SceneManager.LoadScene("GameScene");
+    }
+
+    public void GameOver()
+    {
+        //обнуляем весь наш прогресс при завершении игры (наверное можно сделать метод для этого в самом ScoreInfo)
+        ScoreInfo.Instance.score = 0;
+        ScoreInfo.Instance.sadStudents = 0;
+        ScoreInfo.Instance.happyStudents = 0;
+
+        SceneManager.LoadScene("MainMenu");
     }
 }

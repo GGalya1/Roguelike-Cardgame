@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class TrashZone : DropZone
 {
+    [SerializeField] private DeckManager deckManager;
     [SerializeField] private CardManager cardManager;
 
     public override void OnDrop(PointerEventData eventData)
@@ -27,7 +28,7 @@ public class TrashZone : DropZone
                 if (Random.value > 0.5f)
                 {
                     Debug.Log("Card " + card.name + " was added to deck!");
-                    DeckManager.Instance.AddCardToDeck(card);
+                    deckManager.AddCardToDeck(card);
                 }
                 if (dragCard == null)
                 {

@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &20061504
@@ -554,6 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &114949277
@@ -1040,6 +1042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &383498405
@@ -1259,6 +1262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &472014887
@@ -1444,6 +1448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 1252816032}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!1 &479498829
@@ -1594,6 +1599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 1252816032}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &479498835
@@ -2185,6 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &564642885
@@ -2486,6 +2493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &670587661
@@ -2904,6 +2912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &751427645
@@ -3639,6 +3648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e681d3c3707ce314e82db576924e3fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 1252816032}
   deckInfo: {fileID: 1370994158}
 --- !u!1 &1244162552
 GameObject:
@@ -3693,6 +3703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &1244162555
@@ -3952,6 +3963,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261234555}
   m_CullTransparentMesh: 1
+--- !u!1 &1323241128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1323241129}
+  m_Layer: 0
+  m_Name: DeckInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1323241129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323241128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 984.1809, y: 548.3298, z: 2.4444857}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1366475742
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,6 +5020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &1618721242
@@ -5473,6 +5516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &1717478475
@@ -5822,6 +5866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e01bbcb4dce6e54496485217d07920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 0}
   cardPrefab: {fileID: 8893977661309121409, guid: bbdbd324e2e9f3645bc64e47d98f67e1, type: 3}
   hand: {fileID: 1819497008}
 --- !u!114 &1789551687
@@ -6192,6 +6237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5650fa80ddc9643898930e10301686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 1252816032}
   cardManager: {fileID: 473988996}
 --- !u!1 &1918690625
 GameObject:

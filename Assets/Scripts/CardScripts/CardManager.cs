@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
+    //возникает вероятность рофла = так как CardManager имеет в атрибуте DeckManager, а он имеет в атрибуте CardManager
+    [SerializeField] private DeckManager deckManager;
     public GameObject cardPrefab;
     public Transform hand;
 
@@ -33,13 +35,13 @@ public class CardManager : MonoBehaviour
 
     public void DrawCard()
     {
-        if(DeckManager.Instance.getDeck().Count == 0)
+        if(deckManager.getDeck().Count == 0)
         {
             Debug.LogWarning("Deck is empty !");
             return;
         }
         //schauen, ob in DB vorhanden ist
-        Card card = DeckManager.Instance.DrawCard();
+        Card card = deckManager.DrawCard();
         if (card != null)
         {
             // Instantiate und platzieren im Hand (Canvas)

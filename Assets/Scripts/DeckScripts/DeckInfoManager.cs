@@ -5,6 +5,7 @@ using TMPro;
 
 public class DeckInfoManager : MonoBehaviour
 {
+    [SerializeField] private DeckManager deckManager;
     [SerializeField] private TMP_Text deckInfo;
     private Dictionary<string, int> typesOfCard;
 
@@ -16,7 +17,7 @@ public class DeckInfoManager : MonoBehaviour
     private string GetDeckInfo()
     {
         typesOfCard = new Dictionary<string, int>();
-        List<Card> localDeck = DeckManager.Instance.getDeck();
+        List<Card> localDeck = deckManager.getDeck();
         string temp = "Cards left: " + localDeck.Count + "\n";
 
         //speichern der aktuellen Typen und deren Anzahl
