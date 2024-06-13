@@ -30,7 +30,7 @@ public class TopfManager : MonoBehaviour
         List<Card> allCards = CardDatabase.Instance.GetAllCardsAsList();
         for (int i = 0; i < allCards.Count; i++)
         {
-            if (allCards[i].type.Equals("Блюдо")) dishes.Add(allCards[i]);
+            if (allCards[i].type.Equals("Gericht")) dishes.Add(allCards[i]);
         }
         for (int i = 0; i < dishes.Count; i++)
         {
@@ -56,7 +56,7 @@ public class TopfManager : MonoBehaviour
         cookingSlider.value = timeLeft;
         if (timeLeft <= 0)
         {
-            //заменяем одну заглушку на готовое блюдо
+            //заменяем одну заглушку на готовое Gericht
             if (placeholders.Count > 0)
             {
                 Debug.Log("placeholder count is: " + placeholders.Count);

@@ -14,6 +14,9 @@ public class CardDatabase: MonoBehaviour
     private Dictionary<string, int> typesTable = new Dictionary<string, int>();
     private Dictionary<string, int> dishesTable = new Dictionary<string, int>();
 
+    //чтобы можно было найти карты по типу
+    public Dictionary<string, List<Card>> cardByType = new Dictionary<string, List<Card>>();
+
     //hier werden alle mogliche Karten gespeichert
 
     /*
@@ -28,20 +31,22 @@ public class CardDatabase: MonoBehaviour
      * 9) Diat
      */
     private List<Card> cards = new List<Card>() {
-        //обычные блюда
-        new Card("Картофель", "Овощ", "Картофель", "None", "None", "None", "None", "Стоимость - 3 Рубля\nКаллорийность - 3", "Vegetarisch"),
-        new Card("Рис", "Крупа", "Рис", "None", "None", "None", "None", "Стоимость - 1 Рубль\nКаллорийность - 1", "Vegetarisch"),
-        new Card("Паста", "Крупа", "Паста", "None", "None", "None", "None", "Норм тема. Особенно если не варить", "Vegetarisch"),
-        new Card("Помидор", "Овощ", "Помидор", "None", "None", "None", "None", "красный - мой любимый цвет", "Vegetarisch"),
-        new Card("Шампиньон", "Гриб", "Шампиньон", "None", "None", "None", "None", "мы играли в красноармейцев и шампиньонов...", "Vegetarisch"),
-        //джокер-карты
-        new Card("Молоко", "Молочка", "Молоко", "None", "None", "None", "None", "без комментариев", "Joker"),
-        new Card("Сыр", "Молочка", "Сыр", "None", "None", "None", "None", "много дырок - мало сыра (", "Joker"),
+        //карта джокер + если возникнет ошибка, то вызовиться именно она
         new Card("Bad Apple!", "None", "Bad Apple!" , "None", "None", "None", "None", "перенял челендж", "Joker"),
+        //обычные блюда
+        new Card("Kartoffel", "Obst", "Kartoffel", "None", "None", "None", "None", "Стоимость - 3 Рубля\nКаллорийность - 3", "Vegetarisch"),
+        new Card("Reis", "Getreide", "Reis", "None", "None", "None", "None", "Стоимость - 1 Рубль\nКаллорийность - 1", "Vegetarisch"),
+        new Card("Pasta", "Getreide", "Pasta", "None", "None", "None", "None", "Норм тема. Особенно если не варить", "Vegetarisch"),
+        new Card("Tomate", "Obst", "Tomate", "None", "None", "None", "None", "красный - мой любимый цвет", "Vegetarisch"),
+        new Card("Champignons", "Pilz", "Champignons", "None", "None", "None", "None", "мы играли в красноармейцев и шампиньонов...", "Vegetarisch"),
+        //джокер-карты
+        new Card("Milch", "Milchprodukt", "Milch", "None", "None", "None", "None", "без комментариев", "Joker"),
+        new Card("Cheese", "Milchprodukt", "Cheese", "None", "None", "None", "None", "много дырок - мало сыра (", "Joker"),
+        
         //необычные блюда
-        new Card("Ризотто", "Блюдо", "Ризотто", "Крупа", "Овощ", "Овощ", "None", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
-        new Card("Tomatenpasta", "Блюдо", "Tomatenpasta", "Крупа", "Овощ", "None", "None", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
-        new Card("Cremesuppe", "Блюдо", "Cremesuppe", "Молочка", "Гриб", "Молочка", "Овощ", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch")
+        new Card("Rizotto", "Gericht", "Rizotto", "Getreide", "Obst", "Obst", "None", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
+        new Card("Tomatenpasta", "Gericht", "Tomatenpasta", "Getreide", "Obst", "None", "None", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
+        new Card("Cremesuppe", "Gericht", "Cremesuppe", "Milchprodukt", "Pilz", "Milchprodukt", "Obst", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch")
     };
 
     
@@ -60,25 +65,38 @@ public class CardDatabase: MonoBehaviour
 
         //Typen speichern
         typesTable.Add("None", 0);
-        typesTable.Add("Крупа", 1);
-        typesTable.Add("Овощ", 2);
-        typesTable.Add("Гриб", 3);
-        typesTable.Add("Молочка", 4);
-        typesTable.Add("Блюдо", 5);
+        typesTable.Add("Getreide", 1);
+        typesTable.Add("Obst", 2);
+        typesTable.Add("Pilz", 3);
+        typesTable.Add("Milchprodukt", 4);
+        typesTable.Add("Gericht", 5);
 
         //Images von jeden Gericht speichern
         dishesTable.Add("Bad Apple!", 0);
-        dishesTable.Add("Паста", 1);
-        dishesTable.Add("Помидор", 2);
-        dishesTable.Add("Рис", 3);
-        dishesTable.Add("Шампиньон", 4);
-        dishesTable.Add("Картофель", 5);
-        dishesTable.Add("Молоко", 6);
-        dishesTable.Add("Сыр", 7);
+        dishesTable.Add("Pasta", 1);
+        dishesTable.Add("Tomate", 2);
+        dishesTable.Add("Reis", 3);
+        dishesTable.Add("Champignons", 4);
+        dishesTable.Add("Kartoffel", 5);
+        dishesTable.Add("Milch", 6);
+        dishesTable.Add("Cheese", 7);
         // Картинки готовых блюд
-        dishesTable.Add("Ризотто", 8);
+        dishesTable.Add("Rizotto", 8);
         dishesTable.Add("Tomatenpasta", 9);
         dishesTable.Add("Cremesuppe", 10);
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            // Pruefen, ob der Schluessel bereits im Dictionary existiert
+            if (!cardByType.ContainsKey(cards[i].type))
+            {
+                // Falls nicht, neuen Eintrag mit einer neuen Liste erstellen
+                cardByType[cards[i].type] = new List<Card>();
+            }
+            // Die Karte zur Liste des entsprechenden Typs hinzufuegen
+            cardByType[cards[i].type].Add(cards[i]);
+        }
+
     }
 
     public Card GetCardByName(string cardName)
@@ -122,7 +140,7 @@ public class CardDatabase: MonoBehaviour
         {
             return null;
         }
-        return cards[Random.Range(0, cards.Count)];
+        return cards[Random.Range(1, cards.Count)];
     }
 
     public List<Card> GetAllCardsAsList()

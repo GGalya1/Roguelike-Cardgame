@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Enemy : MonoBehaviour, IDropHandler
 {
-    public float waitTime = 10f; //как долго чел будет ждать (в секундах)
+    public float waitTime = 2f; //как долго чел будет ждать (в секундах)
     private float timeLeft;
     public Slider timeSlider;
     public Image fillImage; //ссылка на Image внутри Fill Area слайдера (чтобы менять цвет по ходу времени)

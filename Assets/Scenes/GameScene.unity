@@ -385,8 +385,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -794, y: 237}
-  m_SizeDelta: {x: 272.1403, y: 230.3508}
+  m_AnchoredPosition: {x: -707, y: 165}
+  m_SizeDelta: {x: 272.1403, y: 138.5717}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &111206075
 MonoBehaviour:
@@ -3972,6 +3972,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1323241129}
+  - component: {fileID: 1323241130}
   m_Layer: 0
   m_Name: DeckInfo
   m_TagString: Untagged
@@ -3994,6 +3995,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1323241130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323241128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe314c36dd0b2734bb74469ff6d205af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deckSize: 32
+  obstAnzahl: 10
+  crupaAnzahl: 9
+  pilzAnzahl: 4
+  milkAnzahl: 9
 --- !u!1 &1366475742
 GameObject:
   m_ObjectHideFlags: 0
@@ -4536,8 +4554,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af53580d28363624e9ecc85dd38b84a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 1252816032}
   timerText: {fileID: 1508945839}
-  roundDuration: 15
+  roundDuration: 50
 --- !u!114 &1508945839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5613,6 +5632,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717478472}
   m_CullTransparentMesh: 1
+--- !u!1 &1750791620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1750791622}
+  - component: {fileID: 1750791621}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1750791621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750791620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8269ab19fd935429a8476861a6f607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1926807940109135057, guid: 282ccb543c3a4d14ba81816bc45b15eb, type: 3}
+  mensaCounter: {fileID: 445778655}
+  maxStudentsAtCounter: 5
+  intervalBetweenTwoDefaultStudents: 20
+  fasterThenThatIsBad: 5
+  nachDemLetztenStudent: 5
+--- !u!4 &1750791622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750791620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 860.71436, y: 558.4593, z: 6.166888}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1762509574
 GameObject:
   m_ObjectHideFlags: 0
@@ -6565,7 +6634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2005409459
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6602,6 +6671,9 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1926807940109135057, guid: 282ccb543c3a4d14ba81816bc45b15eb, type: 3}
   mensaCounter: {fileID: 445778655}
   maxStudentsAtCounter: 4
+  intervalBetweenTwoDefaultStudents: 20
+  fasterThenThatIsBad: 5
+  nachDemLetztenStudent: 5
 --- !u!114 &2005409461
 MonoBehaviour:
   m_ObjectHideFlags: 0

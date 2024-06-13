@@ -12,7 +12,7 @@ public class DeckManager : MonoBehaviour
     [SerializeField] public int maxCardsInHand = 5;
     [SerializeField] private CardManager cardManager;
 
-    private List<Card> deck = new List<Card>();
+    private List<Card> deck;
 
     /*private void Awake()
     {
@@ -27,30 +27,23 @@ public class DeckManager : MonoBehaviour
         }
     }*/
 
-    public void Start()
-    {
-        deck.Add(CardDatabase.Instance.GetCardByName("Картофель"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Cremesuppe"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Tomatenpasta"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Картофель"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Cremesuppe"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Tomatenpasta"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Картофель"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Cremesuppe"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Tomatenpasta"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Картофель"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Cremesuppe"));
-        deck.Add(CardDatabase.Instance.GetCardByName("Tomatenpasta"));
-    }
-
     private void Update()
     {
+        if (deck == null)
+        {
+            deck = new List<Card>(DeckInfoSingel.Instance.cards);
+        }
+
         if (hand != null && hand.transform.childCount < maxCardsInHand-1 && deck.Count > 0)
         {
             cardManager.DrawCard();
         }
     }
 
+    public void setDeck(List<Card> helpMe)
+    {
+        deck = helpMe;
+    }
     public List<Card> getDeck()
     {
         return deck;
@@ -63,7 +56,9 @@ public class DeckManager : MonoBehaviour
     {
         deck.Remove(card);
     }
-    public Card DrawCard()
+    
+    //Мы хотим брать случайную карту из колоды, а не по порядку (потому что она отсортированная по типам, лол)
+    /*public Card DrawCard()
     {
         if (deck.Count == 0)
         {
@@ -74,5 +69,26 @@ public class DeckManager : MonoBehaviour
         return temp;
         //kopiert von CardManager
         
+    }*/
+    public Card DrawCard()
+    {
+        if(deck.Count == 0)
+        {
+            return null;
+        }
+        int randomIndex = Random.Range(0, deck.Count);
+        Card temp = deck[randomIndex];
+        deck.Remove(temp);
+        return temp;
+    }
+
+    public void DeckAusprinten()
+    {
+        string temp = "Das ist den aktuellen Deck: \n";
+        for (int i = 0; i < deck.Count; i++)
+        {
+            temp += deck[i].name + ", ";
+        }
+        Debug.Log(temp);
     }
 }

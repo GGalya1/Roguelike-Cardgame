@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd78c30bd27d664e96b096586a82eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 10
+  waitTime: 15
   timeSlider: {fileID: 1926807938856085623}
   fillImage: {fileID: 1926807939848021558}
   knobImage: {fileID: 1926807939648826245}

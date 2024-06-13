@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
+    [SerializeField] private DeckManager deckManager;
     [SerializeField] private TMP_Text timerText;
     [SerializeField] public float roundDuration = 5f; //300f for 5 minutes
     float time;
@@ -23,6 +24,10 @@ public class Timer : MonoBehaviour
         time -= Time.deltaTime;
         if (time <= 0)
         {
+            List<Card> temp = DeckInfoSingel.Instance.cards;
+
+            deckManager.setDeck(temp);
+            //deckManager.DeckAusprinten();
             EndOfRound();
         }
         UpdateTimer();
