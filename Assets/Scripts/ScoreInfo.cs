@@ -11,6 +11,7 @@ public class ScoreInfo : MonoBehaviour
     public int score;
     public int sadStudents;
     public int happyStudents;
+    public float cookingTime = 3f; 
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class ScoreInfo : MonoBehaviour
             Destroy(gameObject);
         }
 
+        cookingTime = 9f;
         //scoreInfo.text = "Score: 0";
     }
 
