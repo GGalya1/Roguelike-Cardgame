@@ -19,6 +19,10 @@ public class Kochbuch : MonoBehaviour
     [SerializeField] private GameObject nextPageButton;
     [SerializeField] private GameObject prevPageButton;
 
+    [SerializeField] private AudioClip openBook;
+    [SerializeField] private AudioClip closeBook;
+    [SerializeField] private AudioClip turnPage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +37,7 @@ public class Kochbuch : MonoBehaviour
 
     public void OpenDishes()
     {
+        SoundManager.Instance.PlaySound(turnPage);
         DisableAllPagesAndArrows();
         allPages = allDishes;
 
@@ -55,21 +60,25 @@ public class Kochbuch : MonoBehaviour
     }
     public void OpenObst()
     {
+        SoundManager.Instance.PlaySound(turnPage);
         DisableAllPagesAndArrows();
         allObst.SetActive(true);
     }
     public void OpenPilz()
     {
+        SoundManager.Instance.PlaySound(turnPage);
         DisableAllPagesAndArrows();
         allPilz.SetActive(true);
     }
     public void OpenMilk()
     {
+        SoundManager.Instance.PlaySound(turnPage);
         DisableAllPagesAndArrows();
         allMilk.SetActive(true);
     }
     public void OpenGetreide()
     {
+        SoundManager.Instance.PlaySound(turnPage);
         DisableAllPagesAndArrows();
         allGetreide.SetActive(true);
     }
@@ -81,6 +90,7 @@ public class Kochbuch : MonoBehaviour
             return;
         }
         allPages[actualPageIndex].SetActive(false);
+        SoundManager.Instance.PlaySound(turnPage);
         //если перевернули страницу вперёд - то логично что можем теперь и налево листать => включаем опцию
         prevPageButton.SetActive(true);
 
@@ -100,6 +110,7 @@ public class Kochbuch : MonoBehaviour
             return;
         }
         allPages[actualPageIndex].SetActive(false);
+        SoundManager.Instance.PlaySound(turnPage);
         nextPageButton.SetActive(true);
 
         actualPageIndex--;
@@ -129,10 +140,12 @@ public class Kochbuch : MonoBehaviour
     //um das Buch zu oeffnen
     public void OpenBook()
     {
+        SoundManager.Instance.PlaySound(openBook);
         book.SetActive(true);
     }
     public void CloseBook()
     {
+        SoundManager.Instance.PlaySound(closeBook);
         book.SetActive(false);
     }
 }
