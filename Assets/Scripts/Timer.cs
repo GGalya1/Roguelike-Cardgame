@@ -27,6 +27,7 @@ public class Timer : MonoBehaviour
             List<Card> temp = DeckInfoSingel.Instance.cards;
 
             deckManager.setDeck(temp);
+            ScoreInfo.Instance.day++;
             //deckManager.DeckAusprinten();
             EndOfRound();
         }
@@ -39,9 +40,9 @@ public class Timer : MonoBehaviour
         int seconds = Mathf.FloorToInt(time % 60f);
         if (minutes <= 0 && seconds <= 0)
         {
-            timerText.text = string.Format("Time left: 0:00");
+            timerText.text = $"Day: {ScoreInfo.Instance.day}\n" + string.Format("Time left: 0:00");
         }
-        else timerText.text = string.Format("Time left: {0:0}:{1:00}", minutes, seconds);
+        else timerText.text = $"Day: {ScoreInfo.Instance.day}\n" + string.Format("Time left: {0:0}:{1:00}", minutes, seconds);
     }
 
     private void EndOfRound()

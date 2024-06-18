@@ -11,40 +11,70 @@ public class ManagmentMenu : MonoBehaviour
     [SerializeField] private Button nextDayButton;
     [SerializeField] private Button gameOverButton;
 
-    [SerializeField] private Toggle kaltmieteToggle;
-    [SerializeField] private Toggle dusheUndStromToggle;
-    [SerializeField] private Toggle semesterbeitragToggle;
-    [SerializeField] private Toggle essenToggle;
+    [SerializeField] public Toggle kaltmieteToggle;
+    [SerializeField] public Toggle kautionToggle;
+    [SerializeField] public Toggle semesterbeitragToggle;
+    [SerializeField] public Toggle essenToggle;
+
+    //тут секция с доп инфой для каждого из пунктов
+    [SerializeField] private TMP_Text beitragCount;
+    private bool needPayBeitrag = false;
+    [SerializeField] private TMP_Text hungerWarning;
+    [SerializeField] private TMP_Text kautionWarning;
+
 
     int score;
     int strafe;
     public int summe;
     int kaltmiete = 1;
-    int semesterbeitrag = 1;
+    int semesterbeitrag;
     int lebensmittel = 1;
-    int warmmiete = 1;
+    int kaution = 1;
 
     // Start is called before the first frame update
     void Start()
     {
+        ScoreInfo scoreInfo = ScoreInfo.Instance;
+        semesterbeitrag = scoreInfo.semesterbeitragToPay;
+
         //um Berechnungen zu ermoeglichen
-        score = ScoreInfo.Instance.score;
-        strafe = ScoreInfo.Instance.sadStudents / 3;
-        summe = score - (strafe + lebensmittel + semesterbeitrag  + warmmiete + kaltmiete);
+        score = scoreInfo.score;
+        strafe = scoreInfo.sadStudents / 3;
+        if (scoreInfo.isHomeless)
+        {
+            scores[4].gameObject.SetActive(true);
+            kautionToggle.gameObject.SetActive(true);
+            scores[4].text = kaution.ToString();
+            kautionToggle.onValueChanged.AddListener(kautionValueChanged);
+
+            kautionWarning.gameObject.SetActive(true);
+
+            summe = score - (strafe + lebensmittel + semesterbeitrag + kaution + kaltmiete);
+        }
+        else
+        {
+            scores[4].gameObject.SetActive(false);
+            kautionToggle.gameObject.SetActive(false);
+            kautionWarning.gameObject.SetActive(false);
+
+            //передвинуто снизу наверх, потому что неизвестно ебанёт или не ебанёт, если компонент выключен
+            summe = score - (strafe + lebensmittel + semesterbeitrag + kaltmiete);
+        }
+
         UpdateScoreInfo();
         CheckLooseCondition();
 
         //damit man Werte aus Toggles auslesen kann
         kaltmieteToggle.onValueChanged.AddListener(kaltValueChanged);
-        dusheUndStromToggle.onValueChanged.AddListener(warmValueChanged);
+        //kautionToggle.onValueChanged.AddListener(kautionValueChanged);
         semesterbeitragToggle.onValueChanged.AddListener(semesterbeitragValueChanged);
         essenToggle.onValueChanged.AddListener(essenValueChanged);
 
         scores[1].text = kaltmiete.ToString();
         scores[2].text = semesterbeitrag.ToString();
         scores[3].text = lebensmittel.ToString();
-        scores[4].text = warmmiete.ToString();
-        scores[5].text = ScoreInfo.Instance.sadStudents.ToString();
+        //scores[4].text = kaution.ToString();
+        scores[5].text = scoreInfo.sadStudents.ToString();
 
         if (score <= 0)
         {
@@ -58,19 +88,44 @@ public class ManagmentMenu : MonoBehaviour
         {
             texts[0].color = Color.green;
         }
+
+        if (scoreInfo.day % 7 == 0 && scoreInfo.day != 0)
+        {
+            needPayBeitrag = true;
+            beitragCount.text = "Bezahlen Sie bitte die vorliegende Summe !";
+            beitragCount.color = Color.yellow;
+        }
+        else
+        {
+            beitragCount.text = $"{7 - (scoreInfo.day % 7)} Tagen bis zur naechsten Zahlung.";
+        }
+
+        if (scoreInfo.daysWithoutFood > 2)
+        {
+            scoreInfo.cookingTime *= 2;
+            hungerWarning.gameObject.SetActive(true);
+            hungerWarning.color = Color.yellow;
+            hungerWarning.text = $"wegen Hunger ist die Zeit fuer Kochen auf {scoreInfo.cookingTime} Sekunden erhoeht";
+        }
+        else
+        {
+            hungerWarning.gameObject.SetActive(false);
+            scoreInfo.cookingTime = scoreInfo.defaultCookingTime;
+        }
+        
     }
 
     public void CheckLooseCondition()
     {
-        if (summe < 0)
+        if (summe < 0 || (needPayBeitrag && !semesterbeitragToggle.isOn))
         {
             nextDayButton.gameObject.SetActive(false);
             gameOverButton.gameObject.SetActive(true);
         }
         else
         {
-            nextDayButton.gameObject.SetActive(true);
             gameOverButton.gameObject.SetActive(false);
+            nextDayButton.gameObject.SetActive(true);
         }
     }
     private void UpdateScoreInfo()
@@ -79,7 +134,7 @@ public class ManagmentMenu : MonoBehaviour
         {
             texts[7].color = Color.red;
         }
-        else if (summe < score - (kaltmiete + warmmiete + lebensmittel))
+        else if (summe < score - (kaltmiete + kaution + lebensmittel))
         {
             texts[7].color = Color.yellow;
         }
@@ -109,15 +164,15 @@ public class ManagmentMenu : MonoBehaviour
         CheckLooseCondition();
         UpdateScoreInfo();
     }
-    private void warmValueChanged(bool isOn)
+    private void kautionValueChanged(bool isOn)
     {
         if (isOn)
         {
-            summe -= warmmiete;
+            summe -= kaution;
         }
         else
         {
-            summe += warmmiete;
+            summe += kaution;
         }
         CheckLooseCondition();
         UpdateScoreInfo();
@@ -147,5 +202,19 @@ public class ManagmentMenu : MonoBehaviour
         }
         CheckLooseCondition();
         UpdateScoreInfo();
+    }
+
+    public void setGlobalVariablesToDefault()
+    {
+        ScoreInfo scoreInfo = ScoreInfo.Instance;
+        scoreInfo.day = 1;
+        scoreInfo.cookingTime = scoreInfo.defaultCookingTime;
+
+        scoreInfo.happyStudents = 0;
+        scoreInfo.sadStudents = 0;
+        scoreInfo.score = 0;
+
+        scoreInfo.daysWithoutFood = 0;
+        scoreInfo.isHomeless = false;
     }
 }

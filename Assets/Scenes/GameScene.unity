@@ -11294,6 +11294,10 @@ MonoBehaviour:
   sadStudents: 0
   happyStudents: 0
   cookingTime: 3
+  defaultCookingTime: 3
+  day: 0
+  daysWithoutFood: 0
+  semesterbeitragToPay: 1
 --- !u!4 &1366475744
 Transform:
   m_ObjectHideFlags: 0
@@ -12425,7 +12429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deckManager: {fileID: 1252816032}
   timerText: {fileID: 1508945839}
-  roundDuration: 50
+  roundDuration: 10
 --- !u!114 &1508945839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16533,6 +16537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deckManager: {fileID: 1252816032}
   cardManager: {fileID: 473988996}
+  audioClip: {fileID: 0}
 --- !u!1 &1918690625
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,6 +39,7 @@ public class TopfManager : MonoBehaviour
            bestandteileVonDishes.Add(dishes[i].GetCookingComponents());
         }
 
+        Debug.Log($"Cooking time is {cookingTime} now");
         timeLeft = cookingTime;
         cookingSlider.maxValue = cookingTime;
         cookingSlider.value = cookingTime;

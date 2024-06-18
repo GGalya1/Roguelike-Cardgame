@@ -8,6 +8,8 @@ public class TrashZone : DropZone
     [SerializeField] private DeckManager deckManager;
     [SerializeField] private CardManager cardManager;
 
+    [SerializeField] private AudioClip audioClip;
+
     public override void OnDrop(PointerEventData eventData)
     {
         //Debug.Log(eventData.pointerDrag.name + " was dropped to " + gameObject.name + " and will be destroyed");
@@ -23,6 +25,8 @@ public class TrashZone : DropZone
             
             if(card != null)
             {
+                SoundManager.Instance.PlaySound(audioClip);
+
                 //с этой строчкой подразумевалось убрать из "общей" колоды, т.е. для забега, а не из текущей
                 //DeckManager.Instance.RemoveCardFromDeck(card);
                 if (Random.value > 0.5f)

@@ -11,7 +11,16 @@ public class ScoreInfo : MonoBehaviour
     public int score;
     public int sadStudents;
     public int happyStudents;
-    public float cookingTime = 3f; 
+    public float cookingTime = 3f;
+    public float defaultCookingTime = 3f;
+
+    //динамические переменные для учёта прогресса
+    public int day = 1;
+    public int daysWithoutFood = 0;
+    public int semesterbeitragToPay = 1;
+    public bool isHomeless = false;
+
+
 
     private void Awake()
     {
@@ -24,8 +33,7 @@ public class ScoreInfo : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        cookingTime = 9f;
+        day = 1;
         //scoreInfo.text = "Score: 0";
     }
 
