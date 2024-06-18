@@ -27,6 +27,8 @@ public class TopfManager : MonoBehaviour
 
     void Start()
     {
+        cookingTime = ScoreInfo.Instance.cookingTime;
+
         List<Card> allCards = CardDatabase.Instance.GetAllCardsAsList();
         for (int i = 0; i < allCards.Count; i++)
         {
@@ -37,6 +39,7 @@ public class TopfManager : MonoBehaviour
            bestandteileVonDishes.Add(dishes[i].GetCookingComponents());
         }
 
+        Debug.Log($"Cooking time is {cookingTime} now");
         timeLeft = cookingTime;
         cookingSlider.maxValue = cookingTime;
         cookingSlider.value = cookingTime;
