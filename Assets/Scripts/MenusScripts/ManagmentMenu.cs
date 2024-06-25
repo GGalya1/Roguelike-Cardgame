@@ -26,10 +26,15 @@ public class ManagmentMenu : MonoBehaviour
     int score;
     int strafe;
     public int summe;
-    int kaltmiete = 1;
-    int semesterbeitrag;
-    int lebensmittel = 1;
-    int kaution = 1;
+    [SerializeField] private int kaltmiete = 15;
+    [SerializeField] private int semesterbeitrag;
+    [SerializeField] private int lebensmittel = 10;
+    [SerializeField] private int kaution = 30;
+
+    [SerializeField] private GameObject newCardAddPanel;
+    [SerializeField] private Button firstOption;
+    [SerializeField] private Button secondOption;
+    [SerializeField] private Button thirdOption;
 
     // Start is called before the first frame update
     void Start()
@@ -114,7 +119,6 @@ public class ManagmentMenu : MonoBehaviour
         }
         
     }
-
     public void CheckLooseCondition()
     {
         if (summe < 0 || (needPayBeitrag && !semesterbeitragToggle.isOn))
@@ -127,6 +131,40 @@ public class ManagmentMenu : MonoBehaviour
             gameOverButton.gameObject.SetActive(false);
             nextDayButton.gameObject.SetActive(true);
         }
+    }
+    public void FindRandomCard()
+    {
+        Card first = CardDatabase.Instance.GetRandomCard();
+        Card second = CardDatabase.Instance.GetRandomCard();
+        Card third = CardDatabase.Instance.GetRandomCard();
+        while (CheckCardEqualityForManagment(first, second))
+        {
+            second = CardDatabase.Instance.GetRandomCard();
+        }
+        while (CheckCardEqualityForManagment(second, third))
+        {
+            third = CardDatabase.Instance.GetRandomCard();
+        }
+        while (CheckCardEqualityForManagment(first, third))
+        {
+            first = CardDatabase.Instance.GetRandomCard();
+        }
+        firstOption.GetComponentInChildren<TextMeshPro>().text = first.name;
+        firstOption.GetComponent<ChooseNewCard>().SetCardName(first.name);
+
+        secondOption.GetComponentInChildren<TextMeshPro>().text = second.name;
+        secondOption.GetComponent<ChooseNewCard>().SetCardName(second.name);
+
+        thirdOption.GetComponentInChildren<TextMeshPro>().text = third.name;
+        thirdOption.GetComponent<ChooseNewCard>().SetCardName(thirdOption.name);
+    }
+    private bool CheckCardEqualityForManagment(Card a, Card b)
+    {
+        if (a.name.Equals(b.name) || a.type.Equals(b.type))
+        {
+            return true;
+        }
+        return false;
     }
     private void UpdateScoreInfo()
     {

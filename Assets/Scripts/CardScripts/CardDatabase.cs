@@ -39,6 +39,8 @@ public class CardDatabase: MonoBehaviour
         new Card("Pasta", "Getreide", "Pasta", "None", "None", "None", "None", "Норм тема. Особенно если не варить", "Vegetarisch"),
         new Card("Tomate", "Obst", "Tomate", "None", "None", "None", "None", "красный - мой любимый цвет", "Vegetarisch"),
         new Card("Champignons", "Pilz", "Champignons", "None", "None", "None", "None", "мы играли в красноармейцев и шампиньонов...", "Vegetarisch"),
+        new Card("Tofu", "Fleisch", "Tofu", "None", "None", "None", "None", "aue", "Vegetarisch"),
+        new Card("Rindfleisch", "Fleisch", "Rindfleisch", "None", "None", "None", "None", "я сейчас просто с ума сойду, всем спасибо", "nicht Vegetarisch"),
         //джокер-карты
         new Card("Milch", "Milchprodukt", "Milch", "None", "None", "None", "None", "без комментариев", "Joker"),
         new Card("Cheese", "Milchprodukt", "Cheese", "None", "None", "None", "None", "много дырок - мало сыра (", "Joker"),
@@ -46,7 +48,9 @@ public class CardDatabase: MonoBehaviour
         //необычные блюда
         new Card("Rizotto", "Gericht", "Rizotto", "Getreide", "Obst", "Obst", "None", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
         new Card("Tomatenpasta", "Gericht", "Tomatenpasta", "Getreide", "Obst", "None", "None", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
-        new Card("Cremesuppe", "Gericht", "Cremesuppe", "Milchprodukt", "Pilz", "Milchprodukt", "Obst", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch")
+        new Card("Cremesuppe", "Gericht", "Cremesuppe", "Milchprodukt", "Pilz", "Milchprodukt", "Obst", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
+        new Card("Gulasch", "Gericht", "Gulasch", "Getreide", "Obst", "Fleisch", "Milchprodukt", "мне хочется плакать и кричать", "nicht Vegetarisch"),
+        new Card("Gulasch vegan", "Gericht", "Gulasch vegan", "Getreide", "Obst", "Fleisch", "Milchprodukt", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch")
     };
 
     
@@ -70,6 +74,7 @@ public class CardDatabase: MonoBehaviour
         typesTable.Add("Pilz", 3);
         typesTable.Add("Milchprodukt", 4);
         typesTable.Add("Gericht", 5);
+        typesTable.Add("Fleisch", 6);
 
         //Images von jeden Gericht speichern
         dishesTable.Add("Bad Apple!", 0);
@@ -84,6 +89,13 @@ public class CardDatabase: MonoBehaviour
         dishesTable.Add("Rizotto", 8);
         dishesTable.Add("Tomatenpasta", 9);
         dishesTable.Add("Cremesuppe", 10);
+
+
+        //Blyat, новые карты добавлять нужно 
+        dishesTable.Add("Gulasch", 11);
+        dishesTable.Add("Tofu", 12);
+        dishesTable.Add("Rindfleisch", 13);
+        dishesTable.Add("Gulasch vegan", 14);
 
         for (int i = 0; i < cards.Count; i++)
         {

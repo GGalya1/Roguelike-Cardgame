@@ -24,6 +24,14 @@ public class TopfManager : MonoBehaviour
     //массив всех блюд == всё что имеет составные части
     public List<Card> dishes = new List<Card>();
     public List<List<string>> bestandteileVonDishes = new List<List<string>>();
+    public List<List<string>> namesOfBestandteileVonDishes = new List<List<string>>()
+    {
+        new List<string>(){ "Reis", "Tomate", "Kartoffel", "None"},
+        new List<string>(){ "Pasta", "Tomate", "None", "None"},
+        new List<string>(){ "Cheese", "Champignons", "Milch", "Kartoffel"},
+        new List<string>(){ "Reis", "Kartoffel", "Rindfleisch", "Milch"},
+        new List<string>(){ "Reis", "Kartoffel", "Tofu", "Milch" }
+    };
 
     void Start()
     {
@@ -62,9 +70,9 @@ public class TopfManager : MonoBehaviour
             //заменяем одну заглушку на готовое Gericht
             if (placeholders.Count > 0)
             {
-                Debug.Log("placeholder count is: " + placeholders.Count);
+                //Debug.Log("placeholder count is: " + placeholders.Count);
                 Destroy(placeholders[0]);
-                Debug.Log("placeholder count after destroy() is: " + placeholders.Count);
+                //Debug.Log("placeholder count after destroy() is: " + placeholders.Count);
                 cardManager.CreateCard(dishToCook);
             }
             else
@@ -80,8 +88,8 @@ public class TopfManager : MonoBehaviour
 
     //проблема в том, является ли множество всех перетащенных типов валидно для одного из блюд
     //какие есть для блюд варианты - заранее сохранено
-
-    public void StartCooking()
+    //эта имплементация через типы карт
+    /*public void StartCooking()
     {
         //если кинули недостаточно компонентов - нужно пустые места заполнить None
         while (cardTypes.Count < 4)
@@ -114,6 +122,49 @@ public class TopfManager : MonoBehaviour
             return;
         }
         
+        //если смогли найти, то запускаем готовку
+        cookingButton.gameObject.SetActive(false);
+        dishInProcess = true;
+
+        timeLeft = cookingTime;
+        cookingSlider.maxValue = cookingTime;
+        cookingSlider.value = cookingTime;
+        cookingSlider.gameObject.SetActive(true);
+    }*/
+
+    public void StartCooking()
+    {
+        //если кинули недостаточно компонентов - нужно пустые места заполнить None
+        while (cardNames.Count < 4)
+        {
+            cardNames.Add("None");
+        }
+
+        bool flag = false;
+        for (int i = 0; i < namesOfBestandteileVonDishes.Count; i++)
+        {
+            flag = flag || CompareCookingComponents(namesOfBestandteileVonDishes[i], cardNames);
+            if (flag)
+            {
+                dishToCook = dishes[i].name;
+                break;
+            }
+        }
+        //если мы так и не нашли блюда, которое можно приготовить с текущими компонентами
+        if (!flag)
+        {
+            //возращаем все карты с котла назад в руку
+            for (int i = 0; i < placeholders.Count; i++)
+            {
+                cardManager.CreateCard(cardNames[i]);
+            }
+
+            //чистим руку от пустых элементов и горшок от закинутых
+            cleanHandAndTopf();
+            dishInProcess = false;
+            return;
+        }
+
         //если смогли найти, то запускаем готовку
         cookingButton.gameObject.SetActive(false);
         dishInProcess = true;

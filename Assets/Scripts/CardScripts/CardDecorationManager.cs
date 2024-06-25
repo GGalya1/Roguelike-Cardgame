@@ -1,19 +1,27 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class CardDecorationManager : MonoBehaviour
+public class CardDecorationManager : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] public TMP_Text cardNameText;
     [SerializeField] public TMP_Text descriptionText;
-    public GameObject[] typeIcons; // ������ ��� ���� ����� (�� �������)
-    public GameObject[] dishImages; // ����������� ��� ���� (�� �������)
-    // ������ ��������� ������ (�� ������� + ��� ������� ������ ���)
+    public GameObject[] typeIcons; // Иконки для типа карты (по индексу)
+    public GameObject[] dishImages; // Изображения для блюд (по индексу)
+    // Иконки составных частей (по индексу + для каждого окошка своё)
     public GameObject[] firstElement;
     public GameObject[] secondElement;
     public GameObject[] thirdElement;
     public GameObject[] fourthElement;
+
+    //код для трансформирования карты по даблклику
+    [SerializeField] private Image cardFace;
+    private bool isGreen;
+    private float lastClickTime;
+    private const float doubleClickThreshold = 0.2f; // Zeitfenster für Doppelklick in Sekunden
 
     public void DecorateCard(string cardName)
     {
@@ -70,5 +78,64 @@ public class CardDecorationManager : MonoBehaviour
             //Debug.Log("Fourth Element has index: " + fourth + " and this is true with index " + i + ": " + i.Equals(fourth));
             fourthElement[i].SetActive(i.Equals(fourth));
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (Time.time - lastClickTime < doubleClickThreshold)
+        {
+            //Doppelclick erkannt
+            isGreen = !isGreen;
+            TransformCardByDoubleClick();
+        }
+        lastClickTime = Time.time;
+    }
+    public void TransformCardByDoubleClick()
+    {
+        //здесь мы превращаем одно в другое, если прозошёл даблклик (чтобы не искать 10 лет в колоде)
+        //рис <==> макароны
+        if (cardNameText.text.Equals("Reis"))
+        {
+            DecorateCard("Pasta");
+        }
+        else if (cardNameText.text.Equals("Pasta"))
+        {
+            DecorateCard("Reis");
+        }
+        //помидор <==> картошка
+        else if (cardNameText.text.Equals("Tomate"))
+        {
+            DecorateCard("Kartoffel");
+        }
+        else if (cardNameText.text.Equals("Kartoffel"))
+        {
+            DecorateCard("Tomate");
+        }
+        //молоко <==> сыр
+        else if (cardNameText.text.Equals("Milch"))
+        {
+            DecorateCard("Cheese");
+        }
+        else if (cardNameText.text.Equals("Cheese"))
+        {
+            DecorateCard("Milch");
+        }
+        //тофу <==> мясо
+        else if (cardNameText.text.Equals("Tofu"))
+        {
+            DecorateCard("Rindfleisch");
+        }
+        else if (cardNameText.text.Equals("Rindfleisch"))
+        {
+            DecorateCard("Tofu");
+        }
+        /*if (isGreen)
+        {
+            cardFace.color = Color.green;
+        }
+        else
+        {
+            cardFace.color = Color.white;
+        }*/
     }
 }

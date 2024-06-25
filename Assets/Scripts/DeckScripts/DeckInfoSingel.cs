@@ -11,7 +11,8 @@ public class DeckInfoSingel : MonoBehaviour
     public int obstAnzahl = 10;
     public int crupaAnzahl = 9;
     public int pilzAnzahl = 4;
-    public int milkAnzahl = 9;
+    public int milkAnzahl = 5;
+    public int meatAnzahl = 4;
 
     public void Awake()
     {
@@ -55,6 +56,12 @@ public class DeckInfoSingel : MonoBehaviour
 
         temp = allTypes["Milchprodukt"];
         for (int i = 0; i < milkAnzahl; i++)
+        {
+            int randomIndex = Random.Range(0, temp.Count);
+            cards.Add(temp[randomIndex]);
+        }
+        temp = allTypes["Fleisch"];
+        for (int i = 0; i < meatAnzahl; i++)
         {
             int randomIndex = Random.Range(0, temp.Count);
             cards.Add(temp[randomIndex]);
