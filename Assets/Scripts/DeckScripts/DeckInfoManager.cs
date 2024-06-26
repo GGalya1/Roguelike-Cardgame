@@ -8,6 +8,12 @@ public class DeckInfoManager : MonoBehaviour
     [SerializeField] private DeckManager deckManager;
     [SerializeField] private TMP_Text deckInfo;
     private Dictionary<string, int> typesOfCard;
+    private List<Card> localDeck;
+
+    public void Start()
+    {
+        localDeck = deckManager.getDeck();
+    }
 
     void Update()
     {
@@ -17,7 +23,7 @@ public class DeckInfoManager : MonoBehaviour
     private string GetDeckInfo()
     {
         typesOfCard = new Dictionary<string, int>();
-        List<Card> localDeck = deckManager.getDeck();
+        
         string temp = "Cards left: " + localDeck.Count + "\n";
 
         //speichern der aktuellen Typen und deren Anzahl

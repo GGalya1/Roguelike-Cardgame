@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour, IDropHandler
         if (timeLeft <= 0)
         {
             //заказ не выполнен, противник уходит
-            ScoreInfo.Instance.score -= 5;
+            //ScoreInfo.Instance.score -= 5;
             ScoreInfo.Instance.sadStudents++;
             //Debug.Log("Enemy left, order not fulfilled! Your current score: " + playerScore);
             Destroy(gameObject); //удаляем объект противника

@@ -31,14 +31,31 @@ public class ManagmentMenu : MonoBehaviour
     [SerializeField] private int lebensmittel = 10;
     [SerializeField] private int kaution = 30;
 
+    public bool cardWasOnceAdded = false;
     [SerializeField] private GameObject newCardAddPanel;
     [SerializeField] private Button firstOption;
     [SerializeField] private Button secondOption;
     [SerializeField] private Button thirdOption;
 
+    //damit MusikManager funktioniert, lol ))))
+    [SerializeField] private Slider volumeMusikSlider;
+    [SerializeField] private TMP_Text musikVolume;
+    [SerializeField] private AudioClip inMenuMusik;
+    void OnVolumeMusikSliderValueChanged(float value)
+    {
+        MusicManager.Instance.audioSource.volume = value;
+        musikVolume.text = $"Musik Volume {Mathf.RoundToInt(value * 100)}%";
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        MusicManager.Instance.clip = inMenuMusik;
+        MusicManager.Instance.audioSource.volume = volumeMusikSlider.value;
+        musikVolume.text = $"Musik Volume 50%";
+        volumeMusikSlider.onValueChanged.AddListener(OnVolumeMusikSliderValueChanged);
+        MusicManager.Instance.PlayMusik(inMenuMusik);
+
         ScoreInfo scoreInfo = ScoreInfo.Instance;
         semesterbeitrag = scoreInfo.semesterbeitragToPay;
 
@@ -183,7 +200,8 @@ public class ManagmentMenu : MonoBehaviour
         else
         {
             texts[7].color = Color.green;
-            newCardAddPanel.gameObject.SetActive(true);
+            if(!cardWasOnceAdded)
+                newCardAddPanel.gameObject.SetActive(true);
         }
 
         scores[0].text = score.ToString();

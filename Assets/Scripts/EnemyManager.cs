@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -16,10 +18,40 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float nachDemLetztenStudent = 5f; //если стойка пустая минимум столько времени, то спавни нового студента
     private float count2;
 
+    //damit unseren Sound- und MusikManager funktioniert, lol
+    [SerializeField] private AudioClip inGameMusik;
+    [SerializeField] private Slider volumeMusikSlider;
+    [SerializeField] private Slider volumeSoundSlider;
+    [SerializeField] private TMP_Text musikVolume;
+    [SerializeField] private TMP_Text soundVolume;
+
+    void OnVolumeMusikSliderValueChanged(float value)
+    {
+        MusicManager.Instance.audioSource.volume = value;
+        musikVolume.text = $"Musik Volume {Mathf.RoundToInt(value * 100)}%";
+    }
+    void OnVolumeSoundSliderValueChanged(float value)
+    {
+        SoundManager.Instance.audioSource.volume = value;
+        soundVolume.text = $"Sound Volume {Mathf.RoundToInt(value * 100)}%";
+    }
+
     public void Start()
     {
         count1 = intervalBetweenTwoDefaultStudents;
         count2 = nachDemLetztenStudent;
+
+        //damit unseren MusikManager funktioniert, lol
+        MusicManager.Instance.clip = inGameMusik;
+        MusicManager.Instance.audioSource.volume = volumeMusikSlider.value;
+        volumeMusikSlider.onValueChanged.AddListener(OnVolumeMusikSliderValueChanged);
+
+        SoundManager.Instance.audioSource.volume = volumeSoundSlider.value;
+        volumeSoundSlider.onValueChanged.AddListener(OnVolumeSoundSliderValueChanged);
+        MusicManager.Instance.PlayMusik(inGameMusik);
+
+        musikVolume.text = $"Musik Volume 50%";
+        soundVolume.text = $"Sound Volume 100%";
     }
 
     public void CreateEnemy()
