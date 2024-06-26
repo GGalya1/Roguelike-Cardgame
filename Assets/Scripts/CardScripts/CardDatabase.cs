@@ -34,23 +34,23 @@ public class CardDatabase: MonoBehaviour
         //карта джокер + если возникнет ошибка, то вызовиться именно она
         new Card("Bad Apple!", "None", "Bad Apple!" , "None", "None", "None", "None", "перенял челендж", "Joker"),
         //обычные блюда
-        new Card("Kartoffel", "Obst", "Kartoffel", "None", "None", "None", "None", "Стоимость - 3 Рубля\nКаллорийность - 3", "Vegetarisch"),
-        new Card("Reis", "Getreide", "Reis", "None", "None", "None", "None", "Стоимость - 1 Рубль\nКаллорийность - 1", "Vegetarisch"),
-        new Card("Pasta", "Getreide", "Pasta", "None", "None", "None", "None", "Норм тема. Особенно если не варить", "Vegetarisch"),
-        new Card("Tomate", "Obst", "Tomate", "None", "None", "None", "None", "красный - мой любимый цвет", "Vegetarisch"),
-        new Card("Champignons", "Pilz", "Champignons", "None", "None", "None", "None", "мы играли в красноармейцев и шампиньонов...", "Vegetarisch"),
-        new Card("Tofu", "Fleisch", "Tofu", "None", "None", "None", "None", "aue", "Vegetarisch"),
-        new Card("Rindfleisch", "Fleisch", "Rindfleisch", "None", "None", "None", "None", "я сейчас просто с ума сойду, всем спасибо", "nicht Vegetarisch"),
+        new Card("Kartoffel", "Obst", "Kartoffel", "None", "None", "None", "None", "Kosten - 1\nKalorien - 1", 1, 1),
+        new Card("Reis", "Getreide", "Reis", "None", "None", "None", "None", "Kosten - 1\nKalorien - 1", 2, 1),
+        new Card("Pasta", "Getreide", "Pasta", "None", "None", "None", "None", "Kosten - 1\nKalorien - 1", 2, 1),
+        new Card("Tomate", "Obst", "Tomate", "None", "None", "None", "None", "Kosten - 1\nKalorien - 1", 1, 1),
+        new Card("Champignons", "Pilz", "Champignons", "None", "None", "None", "None", "Kosten - 1\nKalorien - 1", 3, 1),
+        new Card("Tofu", "Fleisch", "Tofu", "None", "None", "None", "None", "Kosten - 1\nKalorien - 1", 4, 1),
+        new Card("Rindfleisch", "Fleisch", "Rindfleisch", "None", "None", "None", "None", "Kosten - 1\nKalorien - 1", 4, 3),
         //джокер-карты
-        new Card("Milch", "Milchprodukt", "Milch", "None", "None", "None", "None", "без комментариев", "Joker"),
-        new Card("Cheese", "Milchprodukt", "Cheese", "None", "None", "None", "None", "много дырок - мало сыра (", "Joker"),
+        new Card("Milch", "Milchprodukt", "Milch", "None", "None", "None", "None", "Kosten - 2\nKalorien - 1", 2, 1),
+        new Card("Cheese", "Milchprodukt", "Cheese", "None", "None", "None", "None", "Kosten - 2\nKalorien - 1", 2, 1),
         
         //необычные блюда
-        new Card("Rizotto", "Gericht", "Rizotto", "Getreide", "Obst", "Obst", "None", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
-        new Card("Tomatenpasta", "Gericht", "Tomatenpasta", "Getreide", "Obst", "None", "None", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
-        new Card("Cremesuppe", "Gericht", "Cremesuppe", "Milchprodukt", "Pilz", "Milchprodukt", "Obst", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch"),
-        new Card("Gulasch", "Gericht", "Gulasch", "Getreide", "Obst", "Fleisch", "Milchprodukt", "мне хочется плакать и кричать", "nicht Vegetarisch"),
-        new Card("Gulasch vegan", "Gericht", "Gulasch vegan", "Getreide", "Obst", "Fleisch", "Milchprodukt", "Стоимость - 5 Рублей\nКаллорийность - 10", "Vegetarisch")
+        new Card("Rizotto", "Gericht", "Rizotto", "Getreide", "Obst", "Obst", "None", "Kosten - 5\nKalorien - 5", 10, 5),
+        new Card("Tomatenpasta", "Gericht", "Tomatenpasta", "Getreide", "Obst", "None", "None", "Kosten - 5\nKalorien - 5",7, 5),
+        new Card("Cremesuppe", "Gericht", "Cremesuppe", "Milchprodukt", "Pilz", "Milchprodukt", "Obst", "Kosten - 5\nKalorien - 5", 15, 5),
+        new Card("Gulasch", "Gericht", "Gulasch", "Getreide", "Obst", "Fleisch", "Milchprodukt", "Kosten - 15\nKalorien - 10", 18, 10),
+        new Card("Gulasch vegan", "Gericht", "Gulasch vegan", "Getreide", "Obst", "Fleisch", "Milchprodukt", "Kosten - 10\nKalorien - 10", 13, 8)
     };
 
     

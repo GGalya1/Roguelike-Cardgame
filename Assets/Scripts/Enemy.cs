@@ -95,14 +95,15 @@ public class Enemy : MonoBehaviour, IDropHandler
                 if (card.name.Equals(orderedDish.name))
                 {
                     //правильная карта
-                    ScoreInfo.Instance.score += 10; // Увеличиваем очки игрока
+                    //ScoreInfo.Instance.score += 10; // Увеличиваем очки игрока
+                    ScoreInfo.Instance.score += card.price;
                     ScoreInfo.Instance.happyStudents++;
                     //Debug.Log("Order fulfilled! Score: " + playerScore);
                 }
                 else
                 {
                     //неправильная карта
-                    ScoreInfo.Instance.score -= 5; // Уменьшаем очки игрока
+                    //ScoreInfo.Instance.score -= 5; // Уменьшаем очки игрока (убрал, так как слишком большой штраф)
                     ScoreInfo.Instance.sadStudents++;
                     //Debug.Log("Wrong order! Score: " + playerScore);
                 }

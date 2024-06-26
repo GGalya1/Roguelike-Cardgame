@@ -14,6 +14,11 @@ public class Card
     public string component4;
     public string description;
     public string diat;
+
+    //wird vor 3 Tagen bevor Abgabe hinzugefuegt
+    public int price;
+    public int calories;
+
     //price
     //call
 
@@ -28,6 +33,19 @@ public class Card
         this.component4 = component4;
         this.description = description;
         this.diat = diat;
+    }
+    public Card(string name, string type, string imageName, string component1, string component2, string component3, string component4, string description, int price, int calories)
+    {
+        this.name = name;
+        this.type = type;
+        this.imageName = imageName;
+        this.component1 = component1;
+        this.component2 = component2;
+        this.component3 = component3;
+        this.component4 = component4;
+        this.description = description;
+        this.price = price;
+        this.calories = calories;
     }
 
     public List<string> GetCookingComponents()

@@ -10,6 +10,7 @@ public class Kochbuch : MonoBehaviour
     [SerializeField] private GameObject allPilz;
     [SerializeField] private GameObject allMilk;
     [SerializeField] private GameObject allGetreide;
+    [SerializeField] private GameObject allMeat;
 
     //эта переменная будет ссылаться на лист/ раздел, который мы открываем в книге
     private List<GameObject> allPages;
@@ -82,6 +83,12 @@ public class Kochbuch : MonoBehaviour
         DisableAllPagesAndArrows();
         allGetreide.SetActive(true);
     }
+    public void OpenMeat()
+    {
+        SoundManager.Instance.PlaySound(turnPage);
+        DisableAllPagesAndArrows();
+        allMeat.SetActive(true);
+    }
 
     public void NextPage()
     {
@@ -135,6 +142,7 @@ public class Kochbuch : MonoBehaviour
         allPilz.SetActive(false);
         allMilk.SetActive(false);
         allGetreide.SetActive(false);
+        allMeat.SetActive(false);
     }
 
     //um das Buch zu oeffnen

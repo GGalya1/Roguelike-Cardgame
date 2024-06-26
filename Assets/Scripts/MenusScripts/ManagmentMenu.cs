@@ -44,7 +44,7 @@ public class ManagmentMenu : MonoBehaviour
 
         //um Berechnungen zu ermoeglichen
         score = scoreInfo.score;
-        strafe = scoreInfo.sadStudents / 3;
+        strafe = (scoreInfo.sadStudents / 3) * 5;
         if (scoreInfo.isHomeless)
         {
             scores[4].gameObject.SetActive(true);
@@ -66,8 +66,10 @@ public class ManagmentMenu : MonoBehaviour
             summe = score - (strafe + lebensmittel + semesterbeitrag + kaltmiete);
         }
 
+        
         UpdateScoreInfo();
         CheckLooseCondition();
+        FindRandomCard();
 
         //damit man Werte aus Toggles auslesen kann
         kaltmieteToggle.onValueChanged.AddListener(kaltValueChanged);
@@ -149,13 +151,14 @@ public class ManagmentMenu : MonoBehaviour
         {
             first = CardDatabase.Instance.GetRandomCard();
         }
-        firstOption.GetComponentInChildren<TextMeshPro>().text = first.name;
+        Debug.Log("TextMeshPro was found: " + firstOption.GetComponentInChildren<TextMeshPro>());
+        firstOption.GetComponentInChildren<TextMeshProUGUI>().text = first.name;
         firstOption.GetComponent<ChooseNewCard>().SetCardName(first.name);
 
-        secondOption.GetComponentInChildren<TextMeshPro>().text = second.name;
+        secondOption.GetComponentInChildren<TextMeshProUGUI>().text = second.name;
         secondOption.GetComponent<ChooseNewCard>().SetCardName(second.name);
 
-        thirdOption.GetComponentInChildren<TextMeshPro>().text = third.name;
+        thirdOption.GetComponentInChildren<TextMeshProUGUI>().text = third.name;
         thirdOption.GetComponent<ChooseNewCard>().SetCardName(thirdOption.name);
     }
     private bool CheckCardEqualityForManagment(Card a, Card b)
@@ -171,6 +174,7 @@ public class ManagmentMenu : MonoBehaviour
         if (summe < 0)
         {
             texts[7].color = Color.red;
+            newCardAddPanel.gameObject.SetActive(false);
         }
         else if (summe < score - (kaltmiete + kaution + lebensmittel))
         {
@@ -179,6 +183,7 @@ public class ManagmentMenu : MonoBehaviour
         else
         {
             texts[7].color = Color.green;
+            newCardAddPanel.gameObject.SetActive(true);
         }
 
         scores[0].text = score.ToString();
