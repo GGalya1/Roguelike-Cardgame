@@ -4075,7 +4075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 387.49365, y: 8}
+  m_AnchoredPosition: {x: 375.42, y: 14.1}
   m_SizeDelta: {x: 788.6625, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1358007834
@@ -4383,7 +4383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 450.73, y: 97}
+  m_AnchoredPosition: {x: 438.66006, y: 97}
   m_SizeDelta: {x: 915.139, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1413302560
@@ -5307,7 +5307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Kaltmiete:'
+  m_text: 'Miete:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 706b3e76e18f82e4a8296eee3b717179, type: 2}
   m_sharedMaterial: {fileID: -7882975799228463000, guid: 706b3e76e18f82e4a8296eee3b717179, type: 2}
